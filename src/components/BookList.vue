@@ -1,39 +1,37 @@
 <script>
-import BooksRepository from "../repositories/books.repository.js";
-import AppBook from "./AppBook.vue";
+import BooksRepository from '../repositories/books.repository.js'
+import AppBook from './AppBook.vue'
 
 export default {
   data() {
     return {
-      books: [],
+      books: []
     }
   },
-  components:{
-    AppBook,
+  components: {
+    AppBook
   },
-  
+
   async mounted() {
-    this.repository = new BooksRepository();
-    this.books = await this.repository.getAllBooks();
+    this.repository = new BooksRepository()
+    this.books = await this.repository.getAllBooks()
   },
 
   methods: {
-    async bookDel(id){
-      await this.repository.removeBook(id);
+    async bookDel(id) {
+      await this.repository.removeBook(id)
     }
-
   }
 }
 </script>
 
 <template>
-<div class="list">
-  <app-book v-for="book in books" :book="book"></app-book>
-</div>
+  <div class="list">
+    <app-book v-for="book in books" :book="book"></app-book>
+  </div>
 </template>
 
 <style>
-
 .list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -43,11 +41,10 @@ export default {
 }
 
 .list div {
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
   padding: 10px;
   background-color: rgb(0, 119, 255);
 }
-
 
 @media (max-width: 480px) {
   #list {

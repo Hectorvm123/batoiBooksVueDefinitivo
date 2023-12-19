@@ -3,7 +3,7 @@ import BookList from '../components/BookList.vue'
 
 export default {
   components: {
-    BookList,
+    BookList
   }
 }
 </script>

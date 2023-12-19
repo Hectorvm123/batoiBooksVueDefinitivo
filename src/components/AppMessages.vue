@@ -1,15 +1,15 @@
 <script>
 import { store } from '../store/store.js'
 
-export default{
-  computed:{
-    mensaje(){
-      return store.state.mensajes;
+export default {
+  computed: {
+    mensaje() {
+      return store.state.mensajes
     }
-  },
+  }
 }
 </script>
 
 <template>
-<div>{{ mensaje }}</div>
+  <div>{{ mensaje }}</div>
 </template>
