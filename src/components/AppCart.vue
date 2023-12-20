@@ -8,8 +8,8 @@ export default {
       return store.state.cart
     },
     mensajes() {
-      return store.state.mensajes;
-    },
+      return store.state.mensajes
+    }
   }
 }
 </script>

@@ -1,13 +1,13 @@
 <script>
-import { store } from "../store/store"
+import { store } from '../store/store'
 
 export default {
   props: ['book'],
 
   methods: {
-    async bookDel(id){
+    async bookDel(id) {
       await store.deleteBook(id)
-      store.addMensaje("Libro borrado")
+      store.addMensaje('Libro borrado')
     },
     async bookMod(idBook) {
       this.$router.push({ name: 'form', params: { id: idBook } })

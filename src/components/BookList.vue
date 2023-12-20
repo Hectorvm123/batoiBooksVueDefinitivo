@@ -8,25 +8,21 @@ export default {
   components: {
     AppBook,
     AppMessages
-
   },
 
   computed: {
     books() {
-      return store.state.books;
-    },
+      return store.state.books
+    }
   },
 
   async mounted() {
-    this.repository = new BooksRepository();
-    this.loadedBooks = await this.repository.getAllBooks();
-    store.fillBooks(this.loadedBooks);
-    store.addMensaje("Libros cargados con computed")
-
-  },
+    this.repository = new BooksRepository()
+    this.loadedBooks = await this.repository.getAllBooks()
+    store.fillBooks(this.loadedBooks)
+    store.addMensaje('Libros cargados con computed')
+  }
 }
-
-  
 </script>
 
 <template>

@@ -42,12 +42,12 @@ export default {
 
       if (this.$route.params.id) {
         await this.bookRepository.changeBook(this.book)
-        store.addMensaje("Libro modificado en el repositorio")
+        store.addMensaje('Libro modificado en el repositorio')
         this.resetForm()
         this.$router.push('/')
       } else {
         await this.bookRepository.addBook(this.book)
-        store.addMensaje("Libro añadido al repositorio")
+        store.addMensaje('Libro añadido al repositorio')
         this.resetForm()
         this.$router.push('/')
       }
