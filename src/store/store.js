@@ -31,5 +31,13 @@ export const store = {
         this.state.books[0].splice(index, 1)
       }
     }
+  },
+  async updateBook(changedBook) {
+    this.repository = new BooksRepository()
+
+    const index = this.state.books[0].findIndex((book) => book.id === changedBook.id)
+    if (index > -1) {
+      this.state.books[0][index] = changedBook
+    }
   }
 }

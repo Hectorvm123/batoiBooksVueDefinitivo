@@ -15,14 +15,6 @@ export default {
       modules: []
     }
   },
-  computed: {
-    formTitle() {
-      return Object.keys(this.book).length > 0 ? 'Editar libro' : 'Añadir libro'
-    },
-    submitButtonText() {
-      return Object.keys(this.book).length > 0 ? 'Guardar' : 'Añadir'
-    }
-  },
   async mounted() {
     this.moduleRepository = new ModulesRepository()
     let modulos = await this.moduleRepository.getAllModules()
@@ -43,17 +35,25 @@ export default {
       if (this.$route.params.id) {
         await this.bookRepository.changeBook(this.book)
         store.addMensaje('Libro modificado en el repositorio')
+        store.updateBook(this.book)
         this.resetForm()
         this.$router.push('/')
       } else {
         await this.bookRepository.addBook(this.book)
         store.addMensaje('Libro añadido al repositorio')
+        store.fillBooks(this.book)
         this.resetForm()
         this.$router.push('/')
       }
     },
     resetForm() {
       this.book = JSON.parse(JSON.stringify(this.bookDefecto))
+    },
+    formTitle() {
+      return Object.keys(this.book).length > 0 ? 'Editar libro' : 'Añadir libro'
+    },
+    submitButtonText() {
+      return Object.keys(this.book).length > 0 ? 'Guardar' : 'Añadir'
     }
   }
 }
@@ -62,7 +62,7 @@ export default {
 <template>
   <app-messages></app-messages>
   <div>
-    <h1>{{ this.formTitle }}</h1>
+    <h1>{{ this.formTitle() }}</h1>
     <form id="bookForm" @submit.prevent="addBook">
       <div><input type="text" v-model="book.id" hidden /><br /></div>
       <div>
@@ -111,8 +111,8 @@ export default {
         <textarea v-model="book.comments"></textarea>
       </div>
 
-      <button type="submit">{{ submitButtonText }}</button>
-      <button @click="resetForm">Reset</button>
+      <button type="submit">{{ submitButtonText() }}</button>
+      <button type="button" @click="resetForm">Reset</button>
     </form>
   </div>
 </template>
