@@ -3,7 +3,7 @@ import AppCart from '../components/AppCart.vue'
 
 export default {
   components: {
-    AppCart
+    AppCart,
   }
 }
 </script>
@@ -13,3 +13,4 @@ export default {
     <app-cart />
   </main>
 </template>
+

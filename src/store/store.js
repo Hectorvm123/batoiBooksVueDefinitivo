@@ -1,10 +1,10 @@
-import { reactive } from 'vue'
+import { reactive } from "vue";
 
 export const store = {
   debug: true,
   state: reactive({
-    mensajes: '',
-    cart: []
+    mensajes: "",
+    cart: [],
   }),
   addMensaje(newMessage) {
     if (newMessage) {
@@ -13,7 +13,7 @@ export const store = {
   },
   addToCart(newBook) {
     if (newBook) {
-      this.state.cart.push({ newBook })
+      this.state.cart.push({ newBook });
     }
-  }
-}
+  },
+};

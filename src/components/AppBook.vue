@@ -1,33 +1,35 @@
 <script>
-import BooksRepository from '../repositories/books.repository.js'
+import BooksRepository from "../repositories/books.repository.js";
 
 export default {
-  props: ['book'],
+    props: ['book'],
   async mounted() {
-    this.repository = new BooksRepository()
+    this.repository = new BooksRepository();
   },
 
   methods: {
-    async bookDel(id) {
-      await this.repository.removeBook(id)
+    async bookDel(id){
+      await this.repository.removeBook(id);
     },
-    async bookMod(idBook) {
-      this.$router.push({ name: 'form', params: { id: idBook } })
+    async bookMod(idBook){
+      this.$router.push({ name: 'form', params: { id: idBook }})
+
     }
+
   }
 }
 </script>
 
 <template>
-  <div>
-    <h5>Libro : {{ book.id }}</h5>
-    <h5>{{ book.idModule }} ({{ book.id }})</h5>
+<div>
+    <h5>Libro : {{ book.id }} </h5>
+    <h5> {{ book.idModule }} ({{ book.id }})</h5>
     <h6>{{ book.publisher }}</h6>
     <p>Precio: {{ book.price }}</p>
     <p>Paginas: {{ book.pages }}</p>
     <p>Estado: {{ book.status }}</p>
 
-    <p v-if="book.soldDate === ''">No vendido</p>
+    <p v-if="book.soldDate===''">No vendido</p>
     <p v-else>Vendido el {{ book.soldDate }}</p>
 
     <p>Comentarios: {{ book.comments }}</p>
@@ -35,11 +37,11 @@ export default {
     <button class="addToCart">
       <span class="material-icons">add_shopping_cart</span>
     </button>
-
+        
     <button class="bookMod" @click="bookMod(book.id)">
       <span class="material-icons">edit</span>
     </button>
-
+        
     <button class="bookDel" @click="bookDel(book.id)">
       <span class="material-icons">delete</span>
     </button>

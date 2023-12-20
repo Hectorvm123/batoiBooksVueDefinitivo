@@ -3,7 +3,7 @@ import BookForm from '../components/BookForm.vue'
 
 export default {
   components: {
-    BookForm
+    BookForm,
   }
 }
 </script>
@@ -13,3 +13,4 @@ export default {
     <book-form />
   </main>
 </template>
+

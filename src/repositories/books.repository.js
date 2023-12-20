@@ -1,75 +1,80 @@
 export default class BooksRepository {
-  async getAllBooks() {
-    const response = await fetch('http://localhost:3000/books')
-    if (!response.ok) {
-      throw `Error ${response.status} de la BBDD: ${response.statusText}`
+    async getAllBooks(){
+        const response = await fetch('http://localhost:3000/books');
+        if (!response.ok) {
+            throw `Error ${response.status} de la BBDD: ${response.statusText}`
+        }
+        const myData = await response.json(); 
+        return myData;
     }
-    const myData = await response.json()
-    return myData
-  }
-
-  async getBookById(id) {
-    const response = await fetch('http://localhost:3000/books/' + id)
-    if (!response.ok) {
-      throw `Error ${response.status} de la BBDD: ${response.statusText}`
+    
+    async getBookById(id){
+        const response = await fetch('http://localhost:3000/books/' + id);
+        if (!response.ok) {
+            throw `Error ${response.status} de la BBDD: ${response.statusText}`
+        }
+        const myData = await response.json();
+        return myData;
     }
-    const myData = await response.json()
-    return myData
-  }
-
-  async addBook(newBook) {
-    const response = await fetch('http://localhost:3000/books', {
-      method: 'POST',
-      body: JSON.stringify(newBook),
-      headers: {
-        'Content-Type': 'application/json'
+    
+    async addBook(newBook){
+        const response = await fetch("http://localhost:3000/books", {
+        method: 'POST',
+        body: JSON.stringify(newBook),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      })
+      if (!response.ok) {
+        throw `Error ${response.status} de la BBDD: ${response.statusText}`
       }
-    })
-    if (!response.ok) {
-      throw `Error ${response.status} de la BBDD: ${response.statusText}`
+      const data = await response.json()
+      return data
+    
     }
-    const data = await response.json()
-    return data
-  }
-
-  async removeBook(id) {
-    const response = await fetch('http://localhost:3000/books/' + id, {
+    
+    async removeBook(id){
+      const response = await fetch("http://localhost:3000/books/" +id, {
       method: 'DELETE'
-    })
-    if (!response.ok) {
-      throw `Error ${response.status} de la BBDD: ${response.statusText}`
+      })
+      if (!response.ok) {
+        throw `Error ${response.status} de la BBDD: ${response.statusText}`
+      }
+      const data = await response.json()
+      return data
+    
     }
-    const data = await response.json()
-    return data
-  }
-
-  async changeBook(changedBook) {
-    const response = await fetch('http://localhost:3000/books/' + changedBook.id, {
+    
+    async changeBook(changedBook){
+      const response = await fetch("http://localhost:3000/books/" + changedBook.id, {
       method: 'PUT',
       body: JSON.stringify(changedBook),
-      headers: {
+      headers:{
         'Content-Type': 'application/json'
       }
-    })
-    if (!response.ok) {
-      throw `Error ${response.status} de la BBDD: ${response.statusText}`
-    }
-    const data = await response.json()
-    return data
-  }
-
-  async updatePriceOfBook(id, newPrice) {
-    const response = await fetch('http://localhost:3000/books/' + id, {
-      method: 'PATCH',
-      body: JSON.stringify({ price: newPrice }),
-      headers: {
-        'Content-Type': 'application/json'
+      })
+      if (!response.ok) {
+        throw `Error ${response.status} de la BBDD: ${response.statusText}`
       }
-    })
-    if (!response.ok) {
-      throw `Error ${response.status} de la BBDD: ${response.statusText}`
+      const data = await response.json()
+      return data
+    
     }
-    const data = await response.json()
-    return data
-  }
+    
+    async updatePriceOfBook(id, newPrice){
+        const response = await fetch("http://localhost:3000/books/" + id, {
+        method: 'PATCH',
+        body: JSON.stringify({price: newPrice}),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      })
+      if (!response.ok) {
+        throw `Error ${response.status} de la BBDD: ${response.statusText}`
+      }
+      const data = await response.json()
+      return data
+    
+    }
 }
+
