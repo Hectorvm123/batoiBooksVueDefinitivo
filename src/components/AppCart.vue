@@ -6,7 +6,10 @@ export default {
   computed: {
     cart() {
       return store.state.cart
-    }
+    },
+    mensajes() {
+      return store.state.mensajes;
+    },
   }
 }
 </script>

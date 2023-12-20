@@ -1,15 +1,13 @@
 <script>
-import BooksRepository from '../repositories/books.repository.js'
+import { store } from "../store/store"
 
 export default {
   props: ['book'],
-  async mounted() {
-    this.repository = new BooksRepository()
-  },
 
   methods: {
-    async bookDel(id) {
-      await this.repository.removeBook(id)
+    async bookDel(id){
+      await store.deleteBook(id)
+      store.addMensaje("Libro borrado")
     },
     async bookMod(idBook) {
       this.$router.push({ name: 'form', params: { id: idBook } })

@@ -5,35 +5,34 @@ import AppBook from './AppBook.vue'
 import AppMessages from './AppMessages.vue'
 
 export default {
-  data() {
-    return {
-      books: []
-    }
-  },
   components: {
     AppBook,
     AppMessages
+
+  },
+
+  computed: {
+    books() {
+      return store.state.books;
+    },
   },
 
   async mounted() {
-    this.repository = new BooksRepository()
-    this.books = await this.repository.getAllBooks()
-    store.addMensaje('Libros cargados correctamente')
-  },
+    this.repository = new BooksRepository();
+    this.loadedBooks = await this.repository.getAllBooks();
+    store.fillBooks(this.loadedBooks);
+    store.addMensaje("Libros cargados con computed")
 
-  methods: {
-    async bookDel(id) {
-      await this.repository.removeBook(id)
-      store.addMensaje('Libro con id ' + id + ' ha sido borrado de la base de datos')
-    }
-  }
+  },
 }
+
+  
 </script>
 
 <template>
   <app-messages></app-messages>
   <div class="list">
-    <app-book v-for="book in books" :key="book.id" :book="book"></app-book>
+    <app-book v-for="book in this.books[0]" :key="book.id" :book="book"></app-book>
   </div>
 </template>
 

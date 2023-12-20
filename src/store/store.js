@@ -1,10 +1,12 @@
-import { reactive } from 'vue'
+import { reactive } from "vue";
+import BooksRepository from "../repositories/books.repository.js";
 
 export const store = {
   debug: true,
   state: reactive({
-    mensajes: '',
-    cart: []
+    mensajes: "",
+    cart: [],
+    books: []
   }),
   addMensaje(newMessage) {
     if (newMessage) {
@@ -13,7 +15,21 @@ export const store = {
   },
   addToCart(newBook) {
     if (newBook) {
-      this.state.cart.push({ newBook })
+      this.state.cart.push({ newBook });
+    }
+  },
+  fillBooks(books){
+    this.state.books.push(books);
+  },
+  async deleteBook(id){
+    this.repository = new BooksRepository();
+
+    if (confirm('¿Deseas borrar toda la lista de cosas a hacer?')) {
+      await this.repository.removeBook(id);
+      const index = this.state.books[0].findIndex(book => book.id === id);
+      if (index > -1) {
+        this.state.books[0].splice(index, 1);
+      }
     }
   }
-}
+};
