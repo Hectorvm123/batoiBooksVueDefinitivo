@@ -2,7 +2,8 @@
 import ModulesRepository from '../repositories/modules.repository.js'
 import BooksRepository from '../repositories/books.repository.js'
 import AppMessages from './AppMessages.vue'
-import { store } from '@/store/store'
+import { store } from '../stores/store';
+import { mapActions } from 'pinia';
 
 export default {
   components: {
@@ -26,22 +27,24 @@ export default {
       this.bookDefecto = JSON.parse(JSON.stringify(this.book))
     }
 
-    store.addMensaje('Formulario cargado')
+    this.addMensaje('Formulario cargado')
   },
   methods: {
+    ...mapActions(store, ['addMensaje', 'updateBook', 'anyadirBook']),
+
     async addBook() {
       this.bookRepository = new BooksRepository()
 
       if (this.$route.params.id) {
         await this.bookRepository.changeBook(this.book)
-        store.addMensaje('Libro modificado en el repositorio')
-        store.updateBook(this.book)
+        this.addMensaje('Libro modificado en el repositorio')
+        this.updateBook(this.book)
         this.resetForm()
         this.$router.push('/')
       } else {
         await this.bookRepository.addBook(this.book)
-        store.addMensaje('Libro añadido al repositorio')
-        store.fillBooks(this.book)
+        this.addMensaje('Libro añadido al repositorio')
+        this.anyadirBook(this.book)
         this.resetForm()
         this.$router.push('/')
       }
@@ -50,10 +53,10 @@ export default {
       this.book = JSON.parse(JSON.stringify(this.bookDefecto))
     },
     formTitle() {
-      return Object.keys(this.book).length > 0 ? 'Editar libro' : 'Añadir libro'
+      return Object.keys(this.bookDefecto).length > 0 ? 'Editar libro' : 'Añadir libro'
     },
     submitButtonText() {
-      return Object.keys(this.book).length > 0 ? 'Guardar' : 'Añadir'
+      return Object.keys(this.bookDefecto).length > 0 ? 'Guardar' : 'Añadir'
     }
   }
 }

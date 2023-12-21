@@ -1,15 +1,16 @@
 <script>
-import { store } from '../store/store.js'
+import { store } from '../stores/store';
+import { mapState } from 'pinia';
 
 export default {
   computed: {
-    mensaje() {
-      return store.state.mensajes
-    }
+    ...mapState(store, {
+      mensajes: 'mensajes',
+    })
   }
 }
 </script>
 
 <template>
-  <div>{{ mensaje }}</div>
+  <div>{{ mensajes }}</div>
 </template>

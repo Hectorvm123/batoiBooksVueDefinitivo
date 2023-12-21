@@ -1,15 +1,24 @@
 <script>
-export default {}
+import { RouterLink } from 'vue-router'
+
+export default {
+  components: {
+    RouterLink,
+
+  }
+}
 </script>
 
 <template>
   <nav class="menu">
-    <ul>
-      <li><a href="#list">Ver Libros</a></li>
-      <li><a href="#form">Añadir Libro</a></li>
-      <li><a href="#about">Acerca de...</a></li>
-    </ul>
-  </nav>
+        <ul>
+          <li><RouterLink to="/">Ver Libros</RouterLink></li>
+          <li><RouterLink to="/form">Form</RouterLink></li>
+          <li><RouterLink to="/cart">Carrito</RouterLink></li>
+
+          <li><RouterLink to="/about">About</RouterLink></li>
+        </ul>
+      </nav>
 </template>
 
 <style>
