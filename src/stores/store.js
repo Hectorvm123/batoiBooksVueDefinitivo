@@ -19,7 +19,6 @@ export const store = defineStore('appStore', {
       if (newBook) {
         this.cart.push(newBook)
         this.cart = [...new Set(this.cart)];
-
         localStorage.setItem('cart', JSON.stringify(this.cart));
       }
     },
@@ -74,6 +73,13 @@ export const store = defineStore('appStore', {
       if (index > -1) {
         this.books[0][index] = changedBook
       }
+    },
+    isBookInCart(cartBook) {
+      const index = this.cart.findIndex((book) => book.id === cartBook.id)
+      if (index > -1) {
+        return true
+      }
+      return false
     }
   }
 })

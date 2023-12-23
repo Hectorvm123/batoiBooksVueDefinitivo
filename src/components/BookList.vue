@@ -35,7 +35,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(store, ['fillBooks', 'addMensaje', 'fillModules','addToCart', 'deleteBook', 'getModuleName']),
+    ...mapActions(store, ['isBookInCart', 'fillBooks', 'addMensaje', 'fillModules','addToCart', 'deleteBook', 'getModuleName']),
     async bookMod(idBook) {
       this.$router.push({ name: 'form', params: { id: idBook } })
     }
@@ -48,7 +48,7 @@ export default {
   <app-messages></app-messages>
   <div class="list">
     <app-book v-for="book in this.books[0]" :key="book.id" :book="book" ref="bookRef">
-      <button class="addToCart" @click="addToCart(book)">
+      <button class="addToCart" :disabled="isBookInCart(book)" @click="addToCart(book)">
         <span class="material-icons">add_shopping_cart</span>
       </button>
 
