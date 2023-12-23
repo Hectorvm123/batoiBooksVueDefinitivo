@@ -18,6 +18,8 @@ export const store = defineStore('appStore', {
     addToCart(newBook) {
       if (newBook) {
         this.cart.push(newBook)
+        this.cart = [...new Set(this.cart)];
+
         localStorage.setItem('cart', JSON.stringify(this.cart));
       }
     },

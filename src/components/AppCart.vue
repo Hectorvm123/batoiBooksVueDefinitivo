@@ -25,7 +25,7 @@ export default {
   <app-messages></app-messages>
   <div class="list">
     <app-book v-for="book in this.cart" :key="book.id" :book="book" ref="bookRef">
-      <button class="removeCart" @click="removeFromCart">
+      <button class="removeCart" @click="removeFromCart(book.id)">
         <span class="material-icons">cart-off</span>
       </button>
     </app-book>
