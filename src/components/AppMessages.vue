@@ -12,5 +12,11 @@ export default {
 </script>
 
 <template>
-  <div>{{ mensajes }}</div>
+  <div class="mensajes">{{ mensajes }}</div>
 </template>
+
+<style>
+.mensajes{
+  color: red;
+}
+</style>

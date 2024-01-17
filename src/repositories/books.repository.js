@@ -72,4 +72,15 @@ export default class BooksRepository {
     const data = await response.json()
     return data
   }
+
+  async bookExists(idModule) {
+    const response = await fetch('http://localhost:3000/books')
+    if (!response.ok) {
+      throw `Error ${response.status} de la BBDD: ${response.statusText}`
+    }
+    const myData = await response.json()
+    const exists = myData.some(book => book.idModule === idModule && book.idUser === 2);
+
+    return exists
+  }
 }
