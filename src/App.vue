@@ -1,6 +1,6 @@
 <script>
 import { RouterView } from 'vue-router'
-import AppMenu from './components/AppMenu.vue';
+import AppMenu from './components/AppMenu.vue'
 export default {
   components: {
     RouterView,

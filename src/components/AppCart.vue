@@ -1,6 +1,6 @@
 <script>
-import { store } from '../stores/store';
-import { mapState, mapActions } from 'pinia';
+import { store } from '../stores/store'
+import { mapState, mapActions } from 'pinia'
 import AppBook from './AppBook.vue'
 import AppMessages from './AppMessages.vue'
 
@@ -11,7 +11,7 @@ export default {
   },
   computed: {
     ...mapState(store, {
-      cart: 'cart',
+      cart: 'cart'
     })
   },
   methods: {

@@ -1,11 +1,11 @@
 <script>
-import { store } from '../stores/store';
-import { mapState } from 'pinia';
+import { store } from '../stores/store'
+import { mapState } from 'pinia'
 
 export default {
   computed: {
     ...mapState(store, {
-      mensajes: 'mensajes',
+      mensajes: 'mensajes'
     })
   }
 }
@@ -16,7 +16,7 @@ export default {
 </template>
 
 <style>
-.mensajes{
+.mensajes {
   color: red;
 }
 </style>

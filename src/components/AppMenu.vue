@@ -3,22 +3,21 @@ import { RouterLink } from 'vue-router'
 
 export default {
   components: {
-    RouterLink,
-
+    RouterLink
   }
 }
 </script>
 
 <template>
   <nav class="menu">
-        <ul>
-          <li><RouterLink to="/">Ver Libros</RouterLink></li>
-          <li><RouterLink to="/form">Form</RouterLink></li>
-          <li><RouterLink to="/cart">Carrito</RouterLink></li>
+    <ul>
+      <li><RouterLink to="/">Ver Libros</RouterLink></li>
+      <li><RouterLink to="/form">Form</RouterLink></li>
+      <li><RouterLink to="/cart">Carrito</RouterLink></li>
 
-          <li><RouterLink to="/about">About</RouterLink></li>
-        </ul>
-      </nav>
+      <li><RouterLink to="/about">About</RouterLink></li>
+    </ul>
+  </nav>
 </template>
 
 <style>

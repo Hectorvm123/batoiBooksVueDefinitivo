@@ -1,19 +1,18 @@
 <script>
-import { store } from '../stores/store';
-import { mapState, mapActions } from 'pinia';
+import { store } from '../stores/store'
+import { mapState, mapActions } from 'pinia'
 
 export default {
   props: ['book'],
 
   computed: {
     ...mapState(store, {
-      mensajes: 'mensajes',
+      mensajes: 'mensajes'
     })
   },
 
   methods: {
-    ...mapActions(store, [ 'getModuleName']),
-
+    ...mapActions(store, ['getModuleName'])
   }
 }
 </script>
@@ -32,8 +31,6 @@ export default {
 
     <p>Comentarios: {{ book.comments }}</p>
 
-    
     <slot></slot>
   </div>
-
 </template>

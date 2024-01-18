@@ -1,10 +1,9 @@
 <script>
-import { store } from '../stores/store';
-import { mapState, mapActions } from 'pinia';
-
+import { store } from '../stores/store'
+import { mapState, mapActions } from 'pinia'
 
 import BooksRepository from '../repositories/books.repository.js'
-import ModulesRepository from '../repositories/modules.repository.js';
+import ModulesRepository from '../repositories/modules.repository.js'
 import AppBook from './AppBook.vue'
 import AppMessages from './AppMessages.vue'
 
@@ -23,23 +22,28 @@ export default {
 
   async mounted() {
     this.moduleRepository = new ModulesRepository()
-    this.fillModules( await this.moduleRepository.getAllModules())
+    this.fillModules(await this.moduleRepository.getAllModules())
 
     this.bookRepository = new BooksRepository()
     this.loadedBooks = await this.bookRepository.getAllBooks()
     this.fillBooks(this.loadedBooks)
 
-    
-
     this.addMensaje('Libros cargados con computed')
   },
 
   methods: {
-    ...mapActions(store, ['isBookInCart', 'fillBooks', 'addMensaje', 'fillModules','addToCart', 'deleteBook', 'getModuleName']),
+    ...mapActions(store, [
+      'isBookInCart',
+      'fillBooks',
+      'addMensaje',
+      'fillModules',
+      'addToCart',
+      'deleteBook',
+      'getModuleName'
+    ]),
     async bookMod(idBook) {
       this.$router.push({ name: 'form', params: { id: idBook } })
     }
-
   }
 }
 </script>
